@@ -28,7 +28,7 @@ class GalleryImage(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.caption if self.caption else f"Image {self.id}"
+        return self.desciption if self.desciption else f"Image {self.id}"
 
     class Meta:
         verbose_name = "Imagen de Galería"
