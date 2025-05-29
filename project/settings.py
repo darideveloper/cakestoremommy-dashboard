@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     # Installed apps
     'corsheaders',
     'rest_framework',
-    'rest_framework_simplejwt',
+    'rest_framework.authtoken',
+    'jazzmin',
     
     # Django apps
     'django.contrib.admin',
