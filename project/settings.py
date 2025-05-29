@@ -167,10 +167,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Jazzmin (layout template) settings
 JAZZMIN_SETTINGS = {
     # Text
-    "site_title": "Mi Caja de Herramientas Dahsboard",
+    "site_title": "Cake Store Mommy Dashboard",
     "site_header": "Admin",
-    "site_brand": "MCDH Dashboard",
-    "welcome_sign": "Bienvenido a MCDH Dashboard",
+    "site_brand": "CSM Dashboard",
+    "welcome_sign": "Bienvenido a Cake Store Mommy Dashboard",
     "copyright": "Powered by Dari Developer",
 
     # Media
@@ -269,7 +269,7 @@ JAZZMIN_SETTINGS = {
     # (use custom_css to supply font otherwise)
     "use_google_fonts_cdn": True,
     # Whether to show the UI customizer on the sidebar
-    "show_ui_builder": False,
+    "show_ui_builder": True,
 
     ###############
     # Change view #
