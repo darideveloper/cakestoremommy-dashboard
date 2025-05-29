@@ -246,11 +246,8 @@ JAZZMIN_SETTINGS = {
         "auth.Group": "fas fa-users",
         
         # Custom icons
-        "blog.group": "fas fa-box",
-        "blog.category": "fas fa-hashtag",
-        "blog.link": "fas fa-link",
-        "blog.duration": "fas fa-clock",
-        "blog.post": "fas fa-solid fa-file",
+        "content.category": "fas fa-tags",
+        "content.galleryimage": "fas fa-images",
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
