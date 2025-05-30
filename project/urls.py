@@ -4,7 +4,20 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
+from django.urls import include
 
+from rest_framework import routers
+
+from content import views as content_views
+
+
+# Setup drf router
+router = routers.DefaultRouter()
+router.register(
+    r'gallery-images',
+    content_views.GalleryImageViewSet,
+    basename='gallery-images'
+)
 
 urlpatterns = [
     # Admin site
@@ -21,6 +34,9 @@ urlpatterns = [
         RedirectView.as_view(url='/admin/'),
         name='login-redirect-admin'
     ),
+    
+    # API URLs
+    path('api/', include(router.urls)),
     
 ]
 
