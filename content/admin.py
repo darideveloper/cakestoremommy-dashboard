@@ -13,8 +13,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(models.GalleryImage)
 class GalleryImageAdmin(admin.ModelAdmin):
-    list_display = ("id", "image", "desciption", "created_at", "updated_at")
-    search_fields = ("desciption",)
+    list_display = ("id", "image", "description", "created_at", "updated_at")
+    search_fields = ("description",)
     ordering = ("-created_at",)
     list_filter = ("created_at", "updated_at")
     readonly_fields = ("created_at", "updated_at")

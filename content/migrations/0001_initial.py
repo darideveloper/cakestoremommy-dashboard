@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('image', models.ImageField(upload_to='gallery_images/', verbose_name='Imagen')),
-                ('desciption', models.TextField(blank=True, null=True, verbose_name='Descripción (text alternativo)')),
+                ('description', models.TextField(blank=True, null=True, verbose_name='Descripción (text alternativo)')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],

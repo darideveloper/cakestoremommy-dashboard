@@ -21,3 +21,6 @@ django-filter==24.3
 
 # UI
 django-jazzmin==3.0.1
+
+# testing
+selenium==4.20.0
