@@ -5,7 +5,7 @@ from content import models
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Category
-        fields = ["name"]
+        fields = ["name", "id"]
 
 
 class GalleryImageSerializer(serializers.ModelSerializer):
