@@ -24,6 +24,9 @@ class GalleryImage(models.Model):
     desciption = models.TextField(
         blank=True, null=True, verbose_name="Descripción (text alternativo)"
     )
+    category = models.ManyToManyField(
+        Category, related_name="gallery_images", verbose_name="Categoría"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
