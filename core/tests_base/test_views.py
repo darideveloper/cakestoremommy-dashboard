@@ -1,9 +1,7 @@
 from rest_framework.test import APITestCase
 from rest_framework import status
 
-from core.tests_base.test_models import (
-    TestContentModelsBase
-)
+from core.tests_base.test_models import TestContentModelsBase
 from core.tests_base.test_admin import TestAdminBase
 
 
@@ -69,17 +67,20 @@ class TestApiViewsMethods(APITestCase, TestAdminBase):
 
         # Check response
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        
-        
+
+
 class TestContentViewsBase(TestApiViewsMethods, TestContentModelsBase):
     """Base class for testing content views"""
 
-    def setUp(self):
-        """Initialize test data"""
-        super().setUp()
+    def setUp(self, endpoint: str = "/api/"):
+        """Initialize test data
+
+        endpoint (str): The endpoint to test
+        """
+        super().setUp(endpoint=endpoint, restricted_get=False)
 
         # Create a category
         self.category = self.create_category()
-        
+
         # Create a gallery image
         self.gallery_image = self.create_gallery_image(category=self.category)
