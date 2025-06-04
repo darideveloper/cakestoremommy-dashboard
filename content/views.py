@@ -10,7 +10,7 @@ class GalleryImageViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        category = self.request.query_params.get("category", None)
-        if category is not None:
-            queryset = queryset.filter(categories__id=category)
+        category_id = self.request.query_params.get("category", None)
+        if category_id is not None:
+            queryset = queryset.filter(categories__id=category_id)
         return queryset
