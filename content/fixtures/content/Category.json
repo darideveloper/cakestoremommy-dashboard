@@ -1,0 +1,37 @@
+[
+    {
+        "model": "content.Category",
+        "pk": 1,
+        "fields": {
+            "name": "$150 Cake special"
+        }
+    },
+    {
+        "model": "content.Category",
+        "pk": 2,
+        "fields": {
+            "name": "Characters"
+        }
+    },
+    {
+        "model": "content.Category",
+        "pk": 3,
+        "fields": {
+            "name": "Custom Cakes"
+        }
+    },
+    {
+        "model": "content.Category",
+        "pk": 4,
+        "fields": {
+            "name": "Wedding Cakes"
+        }
+    },
+    {
+        "model": "content.Category",
+        "pk": 5,
+        "fields": {
+            "name": "Regular Cakes & Peruvian Pastries"
+        }
+    }
+]
