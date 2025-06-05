@@ -17,7 +17,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
 
         images_folder = os.path.join(
-            settings.BASE_DIR, "media", "content_gallery_images"
+            settings.BASE_DIR, "temp_media", "content_gallery_images"
         )
 
         # Loop subfolder and images
