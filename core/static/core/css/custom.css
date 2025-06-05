@@ -12,4 +12,9 @@ h1 img {
 
 #jazzy-logo img {
   box-shadow: none !important;
+}
+
+.select2-selection__choice__display {
+  padding-left: 10px !important;
+  color: black;
 }/*# sourceMappingURL=custom.css.map */
