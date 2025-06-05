@@ -83,4 +83,4 @@ class TestContentViewsBase(TestApiViewsMethods, TestContentModelsBase):
         self.category = self.create_category()
 
         # Create a gallery image
-        self.gallery_image = self.create_gallery_image(category=self.category)
+        #self.gallery_image = self.create_gallery_image(category=self.category)
