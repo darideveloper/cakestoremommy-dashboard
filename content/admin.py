@@ -4,11 +4,9 @@ from content import models
 
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "created_at", "updated_at")
+    list_display = ("id", "name")
     search_fields = ("name",)
     ordering = ("name",)
-    list_filter = ("created_at", "updated_at")
-    readonly_fields = ("created_at", "updated_at")
 
 
 @admin.register(models.GalleryImage)
