@@ -138,5 +138,51 @@ class GalleryImageViewSetTestCase(TestContentViewsBase):
     
     def test_single_image_many_categories(self):
         """Validate getting a single image with multiple categories"""
+        image = self.create_gallery_image(category=self.category, description="Image a")
+        category_2 = self.create_category("category_2")
+        image.categories.add(category_2)
+        image.save()
+
+        # Get api data
+        response = self.client.get(self.endpoint, {"category": self.category.id})
         
-        pass
+        # Validate response
+        self.assertEqual(response.status_code, 200)
+        
+        # Validate content
+        json_data = response.json()
+        results = json_data.get("results", [])
+        self.assertEqual(len(results), 1)
+        
+        image = results[0]
+
+        # Validate image attributes
+        image_instance = models.GalleryImage.objects.get(id=image["id"])
+
+        # Validate image data
+        self.assertEqual(image_instance.description, image["description"])
+        self.assertEqual(image_instance.categories.count(), 2)
+        self.assertEqual(image_instance.categories.first().id, self.category.id)
+        self.assertIn(image_instance.image.url, image["image"])
+
+        # Get api data
+        response = self.client.get(self.endpoint, {"category": category_2.id})
+        
+        # Validate response
+        self.assertEqual(response.status_code, 200)
+        
+        # Validate content
+        json_data = response.json()
+        results = json_data.get("results", [])
+        self.assertEqual(len(results), 1)
+        
+        image = results[0]
+
+        # Validate image attributes
+        image_instance = models.GalleryImage.objects.get(id=image["id"])
+
+        # Validate image data
+        self.assertEqual(image_instance.description, image["description"])
+        self.assertEqual(image_instance.categories.count(), 2)
+        self.assertEqual(image_instance.categories.first().id, self.category.id)
+        self.assertIn(image_instance.image.url, image["image"])
