@@ -104,6 +104,8 @@ class GalleryImageViewSetTestCase(TestContentViewsBase):
             self.assertEqual(image_instance.categories.count(), 1)
             self.assertEqual(image_instance.categories.first().id, self.category.id)
             self.assertIn(image_instance.image.url, image["image"])
+            self.assertEqual(image_instance.width, image["width"])
+            self.assertEqual(image_instance.height, image["height"])
 
     def test_filter_category_no_images(self):
         """Validate getting no images with category filter"""
