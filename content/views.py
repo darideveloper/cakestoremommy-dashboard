@@ -13,7 +13,7 @@ class GalleryImageViewSet(viewsets.ReadOnlyModelViewSet):
         category_id = self.request.query_params.get("category", None)
         if category_id is not None:
             queryset = queryset.filter(categories__id=category_id)
-        return queryset
+        return queryset.order_by("-updated_at")
     
     
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
