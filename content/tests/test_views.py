@@ -7,6 +7,8 @@ class GalleryImageViewSetTestCase(TestContentViewsBase):
 
     def setUp(self):
         super().setUp(endpoint="/api/gallery-images/")
+        
+        self.category = self.create_category(name="Category A")
 
     def test_no_category_single_image(self):
         """Validate getting a single image without category"""
@@ -136,3 +138,88 @@ class GalleryImageViewSetTestCase(TestContentViewsBase):
     def test_single_image_many_categories(self):
         """Validate getting a single image with multiple categories"""
         pass
+    
+    
+class CategoryViewSetTestCase(TestContentViewsBase):
+    """Testing CategoryViewSet API view"""
+    
+    def setUp(self):
+        super().setUp(endpoint="/api/categories/")
+    
+    def test_no_categories(self):
+        """Validate getting no categories when none exist"""
+        
+        # Delete all categories to ensure none exist
+        models.Category.objects.all().delete()
+        
+        # Get api data
+        response = self.client.get(self.endpoint)
+        
+        # Validate response
+        self.assertEqual(response.status_code, 200)
+        
+        # Validate content
+        json_data = response.json()
+        results = json_data.get("results", [])
+        self.assertEqual(len(results), 0)
+    
+    def test_single_category(self):
+        """Validate getting a single category"""
+        
+        # Delete all categories to ensure only one exists
+        models.Category.objects.all().delete()
+        category_instance = self.create_category(name="Category A")
+        
+        # Get api data
+        response = self.client.get(self.endpoint)
+        
+        # Validate response
+        self.assertEqual(response.status_code, 200)
+        
+        # Validate content
+        json_data = response.json()
+        results = json_data.get("results", [])
+        self.assertEqual(len(results), 1)
+        
+        # Validate category data
+        category = results[0]
+        self.assertEqual(category["id"], category_instance.id)
+        self.assertEqual(category["name"], category_instance.name)
+    
+    def test_multiple_categories(self):
+        """Validate getting multiple categories"""
+        
+        # Create another category
+        models.Category.objects.all().delete()
+        self.create_category(name="Category A")
+        self.create_category(name="Category B")
+        
+        # Get api data
+        response = self.client.get(self.endpoint)
+        
+        # Validate response
+        self.assertEqual(response.status_code, 200)
+        
+        # Validate content
+        json_data = response.json()
+        results = json_data.get("results", [])
+        self.assertEqual(len(results), 2)
+        
+        # Validate each category data
+        for category in results:
+            category_instance = models.Category.objects.get(id=category["id"])
+            self.assertEqual(category_instance.name, category["name"])
+            
+    def test_multiple_categories_fixtures(self):
+        """Validate getting multiple categories preloaded with fixtures"""
+        
+        # Get api data
+        response = self.client.get(self.endpoint)
+        
+        # Validate response
+        self.assertEqual(response.status_code, 200)
+        
+        # Validate content
+        json_data = response.json()
+        results = json_data.get("results", [])
+        self.assertEqual(len(results), 5)

@@ -78,6 +78,3 @@ class TestContentViewsBase(TestApiViewsMethods, TestContentModelsBase):
         endpoint (str): The endpoint to test
         """
         super().setUp(endpoint=endpoint, restricted_get=False)
-
-        # Create a category
-        self.category = self.create_category()

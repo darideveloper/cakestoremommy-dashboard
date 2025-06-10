@@ -14,3 +14,9 @@ class GalleryImageViewSet(viewsets.ReadOnlyModelViewSet):
         if category_id is not None:
             queryset = queryset.filter(categories__id=category_id)
         return queryset
+    
+    
+class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
+    """ Api viewset for Category model """
+    queryset = models.Category.objects.all()
+    serializer_class = serializers.CategorySerializer
