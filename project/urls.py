@@ -18,6 +18,11 @@ router.register(
     content_views.GalleryImageViewSet,
     basename='gallery-images'
 )
+router.register(
+    r'categories',
+    content_views.CategoryViewSet,
+    basename='categories'
+)
 
 urlpatterns = [
     # Admin site

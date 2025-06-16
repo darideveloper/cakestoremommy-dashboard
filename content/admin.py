@@ -13,9 +13,10 @@ class CategoryAdmin(admin.ModelAdmin):
 class GalleryImageAdmin(admin.ModelAdmin):
     list_display = ("id", "image", "description", "created_at", "updated_at")
     search_fields = ("description",)
-    ordering = ("-created_at",)
+    ordering = ("-updated_at",)
     list_filter = ("created_at", "updated_at", "categories")
     readonly_fields = ("created_at", "updated_at")
+    list_per_page = 20
 
     def image_tag(self, obj):
         return obj.image.url if obj.image else ""

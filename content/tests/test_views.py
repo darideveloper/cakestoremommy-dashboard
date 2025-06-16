@@ -7,6 +7,8 @@ class GalleryImageViewSetTestCase(TestContentViewsBase):
 
     def setUp(self):
         super().setUp(endpoint="/api/gallery-images/")
+        
+        self.category = self.create_category(name="Category A")
 
     def validate_image_attributes(self, image):
         # Get image instance
