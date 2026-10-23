@@ -309,16 +309,20 @@ if STORAGE_AWS:
     # s3 static settings
     STATIC_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-    STATICFILES_STORAGE = 'project.storage_backends.StaticStorage'
     
     # s3 public media settings
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'project.storage_backends.PublicMediaStorage'
 
     # s3 private media settings
     PRIVATE_MEDIA_LOCATION = 'private'
     PRIVATE_FILE_STORAGE = 'project.storage_backends.PrivateMediaStorage'
+
+    # Django 5.1 removed STATICFILES_STORAGE and DEFAULT_FILE_STORAGE.
+    STORAGES = {
+        'default': {'BACKEND': 'project.storage_backends.PublicMediaStorage'},
+        'staticfiles': {'BACKEND': 'project.storage_backends.StaticStorage'},
+    }
     
     # Disable Django's own staticfiles handling in favour of WhiteNoise
     # for greater consistency between gunicorn and
@@ -369,7 +373,6 @@ SIMPLE_JWT = {
 DATE_FORMAT = "d/b/Y"
 TIME_FORMAT = "H:i"
 DATETIME_FORMAT = f"{DATE_FORMAT} {TIME_FORMAT}"
-USE_L10N = False
 
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,
@@ -392,7 +395,6 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
     "theme": "materia",
-    "dark_mode_theme": None,
     "button_classes": {
         "primary": "btn-outline-primary",
         "secondary": "btn-outline-secondary",
